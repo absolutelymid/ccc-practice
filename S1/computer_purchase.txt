@@ -1,0 +1,19 @@
+# check if the top two are sorted correctly
+# if second_top[0] == "":
+#     pass
+# else:
+#     if top[1] == second_top[1]:
+#         if top[0] < second_top[0]:
+#             pass
+#         else:
+#             temp_top = list(second_top)
+#             second_top = list(top)
+#             top = list(temp_top)
+
+
+
+
+ABC 120
+DEF 110
+
+CBA 110
