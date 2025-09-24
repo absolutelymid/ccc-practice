@@ -1,4 +1,5 @@
 # CCC '07 J5
+# uses dictionaries to limit the size of lists for some of the later test cases
 motels = [0, 990, 1010, 1970, 2030, 2940, 3060, 3930, 4060, 4970, 5030, 5990, 6010, 7000]
 
 minDist = int(input())
@@ -9,18 +10,22 @@ if x > 0:
         motels.append(int(input()))
     motels.sort()
 
-today = []
-yesterday = [0]
+today = {}
+yesterday = {0: 1}
 
 while True:
     for start in yesterday:
-        if start != 7000:
-            today_min = minDist + start
-            today_max = maxDist + start
-            # check each hotel
-            for motel in motels:
-                if today_min <= motel <= today_max:
-                    today.append(motel)
+        for i in range(yesterday[start]):
+            if start != 7000:
+                today_min = minDist + start
+                today_max = maxDist + start
+                # check each hotel
+                for motel in motels:
+                    if today_min <= motel <= today_max:
+                        if motel in today:
+                            today[motel] += 1
+                        else:
+                            today[motel] = 1
     
     # if no paths exist
     if len(today) == 0:
@@ -36,7 +41,7 @@ while True:
         break
     
     # reset list
-    yesterday = list(today)
-    today = []
+    yesterday = dict(today)
+    today = {}
 
 print(paths)
